@@ -34,7 +34,7 @@ export function getParam(param) {
 
 export function updateCartCount() {
   const cartItems = getLocalStorage("so-cart") || [];
-  const count = cartItems.length;
+  const count = cartItems.reduce((sum, item) => sum + (item.Quantity || 1), 0);
   let badge = document.querySelector(".cart-count");
   if (!badge) {
     badge = document.createElement("span");

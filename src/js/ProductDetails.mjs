@@ -24,8 +24,15 @@ export default class ProductDetails {
   }
 
   addProductToCart() {
+    const quantity = parseInt(document.getElementById("quantity").value) || 1;
     const cartItems = getLocalStorage("so-cart") || [];
-    cartItems.push(this.product);
+    const existing = cartItems.find((item) => item.Id === this.product.Id);
+    if (existing) {
+      existing.Quantity = (existing.Quantity || 1) + quantity;
+    } else {
+      this.product.Quantity = quantity;
+      cartItems.push(this.product);
+    }
     setLocalStorage("so-cart", cartItems);
     updateCartCount();
   }
@@ -49,6 +56,9 @@ function productDetailsTemplate(product) {
     ${product.DescriptionHtmlSimple}
     </p>
     <div class="product-detail__add">
+      <label for="quantity">Qty:
+        <input type="number" id="quantity" name="quantity" value="1" min="1" max="99" />
+      </label>
       <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
     </div></section>`;
 }

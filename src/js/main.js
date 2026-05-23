@@ -8,4 +8,3 @@ window.addEventListener("pageshow", (event) => {
     updateCartCount();
   }
 });
-

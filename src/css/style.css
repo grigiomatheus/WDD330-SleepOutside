@@ -156,6 +156,39 @@ button {
   text-align: center;
 }
 
+.category-cards {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 1rem;
+}
+
+.category-cards a {
+  text-decoration: none;
+  color: var(--dark-grey);
+  text-align: center;
+  flex: 1 1 120px;
+  max-width: 160px;
+}
+
+.category-cards figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category-cards img {
+  width: 100px;
+  height: 100px;
+}
+
+.category-cards figcaption {
+  font-family: var(--font-headline);
+  font-size: var(--large-font);
+}
+
 .products {
   margin-top: 2rem;
   padding: 1rem;

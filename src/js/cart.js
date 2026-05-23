@@ -1,12 +1,14 @@
 import ShoppingCart from "./ShoppingCart.mjs";
 import { updateCartCount, loadHeaderFooter } from "./utils.mjs";
 
-await loadHeaderFooter();
+(async () => {
+  await loadHeaderFooter();
 
-const cart = new ShoppingCart(
-  "so-cart",
-  document.querySelector(".product-list"),
-);
+  const cart = new ShoppingCart(
+    "so-cart",
+    document.querySelector(".product-list"),
+  );
 
-cart.init();
-updateCartCount();
+  cart.init();
+  updateCartCount();
+})();

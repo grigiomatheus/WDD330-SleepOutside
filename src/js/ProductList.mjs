@@ -1,11 +1,10 @@
 
 import { renderListWithTemplate } from "./utils.mjs";
 
-// Função de template reutilizável para um card de produto
 export function productCardTemplate(product) {
   return `<li class="product-card">
-    <a href="product_pages/?product=${product.Id}">
-      <img src="${product.Image}" alt="${product.Name}">
+    <a href="/product_pages/index.html?product=${product.Id}">
+      <img src="${product.Images?.PrimaryLarge ?? product.Image}" alt="${product.Name}">
       <h3 class="card__brand">${product.Brand?.Name ?? ""}</h3>
       <h2 class="card__name">${product.Name}</h2>
       <p class="product-card__price">$${product.FinalPrice}</p>
@@ -21,7 +20,7 @@ export default class ProductList {
   }
 
   async init() {
-    const list = await this.dataSource.getData();
+    const list = await this.dataSource.getData(this.category);
     this.renderList(list);
   }
 
@@ -29,5 +28,4 @@ export default class ProductList {
     if (!this.listElement) return;
     renderListWithTemplate(template, this.listElement, productList, "afterbegin", true);
   }
-
 }

@@ -57,9 +57,151 @@
       </div>
     </header>
 
-    <main class="divider">
-      <section class="products">
-        <h2>Review & Place your Order</h2>
+    <main class="divider checkout-page">
+      <section class="checkout-layout">
+        <form class="checkout-form" id="checkout-form" name="checkout">
+          <h2>Review &amp; Place Your Order</h2>
+          <input type="hidden" name="orderDate" id="orderDate" />
+          <fieldset>
+            <legend>Customer Name</legend>
+            <div class="checkout-form__row checkout-form__row--split">
+              <label>
+                First Name
+                <input
+                  type="text"
+                  name="fname"
+                  autocomplete="given-name"
+                  required
+                />
+              </label>
+              <label>
+                Last Name
+                <input
+                  type="text"
+                  name="lname"
+                  autocomplete="family-name"
+                  required
+                />
+              </label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Address</legend>
+            <div class="checkout-form__row">
+              <label>
+                Street Address
+                <input
+                  type="text"
+                  name="street"
+                  autocomplete="address-line1"
+                  required
+                />
+              </label>
+            </div>
+            <div class="checkout-form__row checkout-form__row--split">
+              <label>
+                City
+                <input
+                  type="text"
+                  name="city"
+                  autocomplete="address-level2"
+                  required
+                />
+              </label>
+              <label>
+                State
+                <input
+                  type="text"
+                  name="state"
+                  autocomplete="address-level1"
+                  required
+                />
+              </label>
+            </div>
+            <div class="checkout-form__row">
+              <label>
+                Zip Code
+                <input
+                  type="text"
+                  id="zip"
+                  name="zip"
+                  inputmode="numeric"
+                  autocomplete="postal-code"
+                  required
+                />
+              </label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Payment</legend>
+            <div class="checkout-form__row">
+              <label>
+                Credit Card Number
+                <input
+                  type="text"
+                  name="cardNumber"
+                  inputmode="numeric"
+                  autocomplete="cc-number"
+                  required
+                />
+              </label>
+            </div>
+            <div class="checkout-form__row checkout-form__row--split">
+              <label>
+                Expiration Date
+                <input
+                  type="text"
+                  name="expiration"
+                  placeholder="MM/YY"
+                  autocomplete="cc-exp"
+                  required
+                />
+              </label>
+              <label>
+                Security Code
+                <input
+                  type="text"
+                  name="code"
+                  inputmode="numeric"
+                  autocomplete="cc-csc"
+                  required
+                />
+              </label>
+            </div>
+          </fieldset>
+          <button type="submit" id="checkoutSubmit">Checkout</button>
+          <p class="checkout-message" aria-live="polite"></p>
+        </form>
+
+        <aside
+          class="order-summary checkout-summary"
+          id="order-summary"
+          aria-labelledby="order-summary-title"
+        >
+          <h2 id="order-summary-title">Order Summary</h2>
+          <p class="order-summary__count">
+            Items in Cart
+            <span id="num-items">0</span>
+          </p>
+          <dl class="order-summary__list">
+            <div>
+              <dt>Subtotal</dt>
+              <dd class="order-summary__subtotal" id="cartTotal">$0.00</dd>
+            </div>
+            <div>
+              <dt>Tax</dt>
+              <dd class="order-summary__tax" id="tax">$0.00</dd>
+            </div>
+            <div>
+              <dt>Shipping Estimate</dt>
+              <dd class="order-summary__shipping" id="shipping">$0.00</dd>
+            </div>
+            <div>
+              <dt>Order Total</dt>
+              <dd class="order-summary__total" id="orderTotal">$0.00</dd>
+            </div>
+          </dl>
+        </aside>
       </section>
     </main>
 

@@ -333,12 +333,27 @@ footer {
 .cart-footer {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
   padding: 1em 0;
 }
 
 .cart-total {
   font-size: 1.2em;
   font-weight: bold;
+}
+
+.checkout-button {
+  display: inline-block;
+  padding: 0.5em 1.5em;
+  background-color: var(--secondary-color);
+  color: white;
+  text-decoration: none;
+  font-size: var(--large-font);
+}
+
+.checkout-button:hover {
+  background-color: var(--tertiary-color);
 }
 
 .hide {
@@ -382,4 +397,99 @@ footer {
   align-items: center;
   justify-content: center;
   pointer-events: none;
+}
+
+.checkout-page {
+  padding: 1.5rem 1rem 3rem;
+}
+
+.checkout-layout {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.checkout-form,
+.order-summary {
+  border: 1px solid var(--light-grey);
+  padding: 1.25rem;
+  background-color: white;
+}
+
+.checkout-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.checkout-form fieldset {
+  border: 1px solid var(--light-grey);
+  padding: 1rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.checkout-form legend {
+  padding: 0 0.35rem;
+  font-family: var(--font-headline);
+  font-size: var(--large-font);
+}
+
+.checkout-form__row {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.checkout-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: bold;
+}
+
+.checkout-form input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #b7b7b7;
+  font-size: 1rem;
+}
+
+.checkout-form button {
+  width: 100%;
+  margin: 0;
+}
+
+.checkout-message {
+  min-height: 1.5rem;
+  padding: 0;
+  color: var(--secondary-color);
+}
+
+.order-summary h2 {
+  margin-bottom: 1rem;
+}
+
+.order-summary__list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.order-summary__list div:last-child {
+  border-bottom: 0;
+  font-weight: bold;
+}
+
+.order-summary__list dd {
+  margin-left: 0;
+}
+
+@media screen and (min-width: 760px) {
+  .checkout-layout {
+    grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  }
+
+  .checkout-form__row--split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

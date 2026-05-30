@@ -241,6 +241,73 @@ button {
   width: 100%;
 }
 
+.product-comments {
+  margin-top: 2rem;
+}
+
+.comment-form {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--light-grey);
+  background-color: white;
+}
+
+.comment-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: bold;
+}
+
+.comment-form input,
+.comment-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #b7b7b7;
+  font-size: 1rem;
+  font-family: var(--font-body);
+}
+
+.comment-form textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.comment-form button {
+  margin: 0;
+}
+
+.comment-list {
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  padding: 0;
+}
+
+.comment-list__empty {
+  padding: 1rem;
+  border: 1px dashed var(--light-grey);
+  color: #666;
+}
+
+.comment-card {
+  padding: 1rem;
+  border: 1px solid var(--light-grey);
+  background-color: white;
+}
+
+.comment-card__meta {
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-size: var(--small-font);
+  color: #666;
+}
+
+.comment-card__body {
+  padding: 0;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;

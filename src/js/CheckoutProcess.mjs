@@ -1,5 +1,5 @@
 import ExternalServices from "./ExternalServices.mjs";
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 const SALES_TAX_RATE = 0.06;
 const FIRST_ITEM_SHIPPING = 10;
@@ -24,6 +24,55 @@ function packageItems(items) {
 
 function getItemCount(items) {
   return items.reduce((sum, item) => sum + (item.Quantity || 1), 0);
+}
+
+function formatCheckoutError(error) {
+  const details = error?.message ?? error;
+
+  if (typeof details === "string") {
+    return details;
+  }
+
+  if (Array.isArray(details)) {
+    return details.join(" ");
+  }
+
+  if (details && typeof details === "object") {
+    if (typeof details.message === "string") {
+      return details.message;
+    }
+
+    if (typeof details.error === "string") {
+      return details.error;
+    }
+
+    const messages = Object.values(details).flatMap((value) => {
+      if (Array.isArray(value)) {
+        return value;
+      }
+
+      return [value];
+    }).filter((value) => typeof value === "string" && value.trim());
+
+    if (messages.length > 0) {
+      return messages.join(" ");
+    }
+
+    return JSON.stringify(details);
+  }
+
+  return "Unable to submit your order.";
+}
+
+function normalizeOrder(order) {
+  return {
+    ...order,
+    state: order.state?.trim().toUpperCase(),
+    zip: order.zip?.replace(/\D/g, ""),
+    cardNumber: order.cardNumber?.replace(/[\s-]/g, ""),
+    code: order.code?.replace(/\D/g, ""),
+    expiration: order.expiration?.trim(),
+  };
 }
 
 export default class CheckoutProcess {
@@ -86,24 +135,43 @@ export default class CheckoutProcess {
   }
 
   async checkout(form) {
-    this.list = getLocalStorage(this.key) || [];
+    const messageElement = document.querySelector(".checkout-message");
 
-    if (this.list.length === 0) {
-      throw new Error("Your cart is empty.");
+    if (messageElement) {
+      messageElement.textContent = "";
     }
 
-    this.calculateItemSummary();
-    this.calculateOrderTotal();
+    try {
+      this.list = getLocalStorage(this.key) || [];
 
-    const formData = new FormData(form);
-    const order = formDataToJSON(formData);
+      if (this.list.length === 0) {
+        throw new Error("Your cart is empty.");
+      }
 
-    order.orderDate = new Date().toISOString();
-    order.items = packageItems(this.list);
-    order.orderTotal = this.orderTotal.toFixed(2);
-    order.shipping = this.shipping;
-    order.tax = this.tax.toFixed(2);
+      this.calculateItemSummary();
+      this.calculateOrderTotal();
 
-    return this.services.checkout(order);
+      const formData = new FormData(form);
+      const order = normalizeOrder(formDataToJSON(formData));
+
+      order.orderDate = new Date().toISOString();
+      order.items = packageItems(this.list);
+      order.orderTotal = this.orderTotal.toFixed(2);
+      order.shipping = this.shipping;
+      order.tax = this.tax.toFixed(2);
+
+      const response = await this.services.checkout(order);
+
+      setLocalStorage(this.key, []);
+      window.location.href = "/checkout/success.html";
+
+      return response;
+    } catch (error) {
+      if (messageElement) {
+        messageElement.textContent = formatCheckoutError(error);
+      }
+
+      return null;
+    }
   }
 }

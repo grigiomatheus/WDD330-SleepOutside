@@ -71,6 +71,10 @@
                   type="text"
                   name="fname"
                   autocomplete="given-name"
+                  minlength="2"
+                  maxlength="30"
+                  pattern="[A-Za-z' \-]{2,30}"
+                  title="Enter at least 2 letters for your first name."
                   required
                 />
               </label>
@@ -80,6 +84,10 @@
                   type="text"
                   name="lname"
                   autocomplete="family-name"
+                  minlength="2"
+                  maxlength="30"
+                  pattern="[A-Za-z' \-]{2,30}"
+                  title="Enter at least 2 letters for your last name."
                   required
                 />
               </label>
@@ -94,6 +102,9 @@
                   type="text"
                   name="street"
                   autocomplete="address-line1"
+                  minlength="5"
+                  maxlength="60"
+                  title="Enter your street address."
                   required
                 />
               </label>
@@ -105,6 +116,10 @@
                   type="text"
                   name="city"
                   autocomplete="address-level2"
+                  minlength="2"
+                  maxlength="40"
+                  pattern="[A-Za-z' .\-]{2,40}"
+                  title="Enter a valid city name."
                   required
                 />
               </label>
@@ -114,6 +129,10 @@
                   type="text"
                   name="state"
                   autocomplete="address-level1"
+                  minlength="2"
+                  maxlength="2"
+                  pattern="[A-Za-z]{2}"
+                  title="Use the 2-letter state abbreviation."
                   required
                 />
               </label>
@@ -127,6 +146,10 @@
                   name="zip"
                   inputmode="numeric"
                   autocomplete="postal-code"
+                  minlength="5"
+                  maxlength="5"
+                  pattern="[0-9]{5}"
+                  title="Enter a 5-digit ZIP code."
                   required
                 />
               </label>
@@ -142,6 +165,10 @@
                   name="cardNumber"
                   inputmode="numeric"
                   autocomplete="cc-number"
+                  minlength="13"
+                  maxlength="25"
+                  pattern="[0-9 \-]{13,25}"
+                  title="Enter a valid card number using 13 to 19 digits. Spaces and dashes are allowed."
                   required
                 />
               </label>
@@ -154,6 +181,8 @@
                   name="expiration"
                   placeholder="MM/YY"
                   autocomplete="cc-exp"
+                  pattern="(0[1-9]|1[0-2])\/[0-9]{2}"
+                  title="Enter the expiration date as MM/YY."
                   required
                 />
               </label>
@@ -164,6 +193,10 @@
                   name="code"
                   inputmode="numeric"
                   autocomplete="cc-csc"
+                  minlength="3"
+                  maxlength="4"
+                  pattern="[0-9]{3,4}"
+                  title="Enter the 3 or 4 digit security code."
                   required
                 />
               </label>

@@ -29,11 +29,7 @@ import { loadHeaderFooter, updateCartCount } from "./utils.mjs";
       return;
     }
 
-    try {
-      const response = await checkoutProcess.checkout(checkoutForm);
-      message.textContent = response.message || "Order submitted successfully.";
-    } catch (error) {
-      message.textContent = error.message || "Unable to submit your order.";
-    }
+    message.textContent = "";
+    await checkoutProcess.checkout(checkoutForm);
   });
 })();

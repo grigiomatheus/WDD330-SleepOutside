@@ -463,6 +463,10 @@ footer {
   color: var(--secondary-color);
 }
 
+.checkout-message:empty {
+  display: none;
+}
+
 .order-summary h2 {
   margin-bottom: 1rem;
 }
@@ -482,6 +486,39 @@ footer {
 
 .order-summary__list dd {
   margin-left: 0;
+}
+
+.success-page {
+  display: grid;
+  place-items: center;
+  padding: 3rem 1rem 4rem;
+}
+
+.success-card {
+  width: min(100%, 42rem);
+  border: 1px solid var(--light-grey);
+  background-color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.success-card h1 {
+  margin-bottom: 1rem;
+  font-family: var(--font-headline);
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.success-card__eyebrow {
+  padding: 0;
+  margin-bottom: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tertiary-color);
+}
+
+.success-card__link {
+  margin-top: 1rem;
 }
 
 @media screen and (min-width: 760px) {
